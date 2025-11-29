@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learnify - Online Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-blue: #2563EB; 
+            --light-bg: #F3F8FF;
+            --text-dark: #1F2937;
+            --text-gray: #6B7280;
+            --white: #ffffff;
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+    
+        .btn {
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--text-gray);
+            color: var(--text-dark);
+        }
+
+        
+        header {
+            background: var(--white);
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+        .search-bar {
+            background: #f1f1f1;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            width: 300px;
+        }
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            margin-left: 10px;
+        }
+        .auth-buttons .btn {
+            margin-left: 10px;
+        }
+
+        
+        .hero {
+            background: var(--light-bg);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+        .hero-search {
+            background: var(--white);
+            display: inline-flex;
+            padding: 5px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 500px;
+        }
+        .hero-search input {
+            border: none;
+            padding: 10px 20px;
+            flex-grow: 1;
+            outline: none;
+            border-radius: 50px;
+        }
+
+        
+        .categories {
+            padding: 60px 0;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .cat-item {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .cat-item:hover { transform: translateY(-5px); }
+        .cat-icon {
+            font-size: 24px;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        
+        .courses {
+            padding: 60px 0;
+            background: var(--white);
+        }
+        .filters {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .course-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .course-img {
+            height: 160px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .course-content {
+            padding: 20px;
+        }
+        .course-title {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .stars { color: #FFD700; font-size: 0.8rem; }
+        .price {
+            color: var(--primary-blue);
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        
+        .instructors {
+            padding: 60px 0;
+            background: var(--light-bg);
+        }
+        .instructor-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .instructor-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 250px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .inst-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin: 0 auto 15px;
+            object-fit: cover;
+        }
+        .inst-role {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        
+        .testimonials {
+            padding: 60px 0;
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .test-card {
+            background: var(--white);
+            padding: 30px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .test-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #ccc;
+        }
+
+        
+        .articles {
+            padding: 60px 0;
+            background: var(--light-bg);
+        }
+        .article-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .art-img {
+            height: 150px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .art-content { padding: 20px; }
+        .art-date { font-size: 0.8rem; color: var(--text-gray); }
+        .read-more { color: var(--primary-blue); font-size: 0.9rem; font-weight: 600; }
+
+    
+        .faq {
+            padding: 60px 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        
+        .newsletter {
+            padding: 60px 0;
+            background: var(--light-bg);
+            text-align: center;
+        }
+        .news-box {
+            background: #E0E7FF;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .news-input {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .news-input input {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+
+        
+        footer {
+            background: #111827;
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h4 { margin-bottom: 20px; }
+        .footer-col ul li { margin-bottom: 10px; color: #9CA3AF; cursor: pointer; }
+        .copyright {
+            text-align: center;
+            color: #4B5563;
+            font-size: 0.9rem;
+            border-top: 1px solid #374151;
+            padding-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Learnify</div>
+            <div class="search-bar">
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="Search courses...">
+            </div>
+            <div class="auth-buttons">
+                <button class="btn btn-outline">Login</button>
+                <button class="btn btn-primary">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Unlock Your Potential with Online Learning</h1>
+            <p>Join thousands of learners and access top video courses from expert instructors.</p>
+            <div class="hero-search">
+                <input type="text" placeholder="What do you want to learn?">
+                <button class="btn btn-primary">Find Courses</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Popular Categories</h2>
+            <div class="category-grid">
+                <div class="cat-item"><div class="cat-icon"><i class="fa fa-code"></i></div>Development</div>
+                <div class="cat-item"><div class="cat-icon"><i class="fa fa-paint-brush"></i></div>Design</div>
+                <div class="cat-item"><div class="cat-icon"><i class="fa fa-briefcase"></i></div>Business</div>
+                <div class="cat-item"><div class="cat-icon"><i class="fa fa-language"></i></div>Languages</div>
+                <div class="cat-item"><div class="cat-icon"><i class="fa fa-bullhorn"></i></div>Marketing</div>
+                <div class="cat-item"><div class="cat-icon"><i class="fa fa-music"></i></div>Music</div>
+                <div class="cat-item"><div class="cat-icon"><i class="fa fa-camera"></i></div>Lifestyle</div>
+                <div class="cat-item"><div class="cat-icon"><i class="fa fa-flask"></i></div>Science</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="courses">
+        <div class="container">
+            <h2 class="section-title">Featured Courses</h2>
+            <div class="filters">
+                <span>Level <i class="fa fa-chevron-down"></i></span>
+                <span>Price <i class="fa fa-chevron-down"></i></span>
+                <span>Duration <i class="fa fa-chevron-down"></i></span>
+            </div>
+            <div class="course-grid">
+                <div class="course-card">
+                    <img src="images/course-web.jpg.avif" alt="Web Development" class="course-img">
+                    <div class="course-content">
+                        <div class="course-title">Master Web Development Bootcamp</div>
+                        <div class="stars"><i class="fa fa-star"></i> 4.8 (500)</div>
+                        <span class="price">$20</span>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <img src="images/course-design.jpg.jpg" alt="Graphic Design" class="course-img">
+                    <div class="course-content">
+                        <div class="course-title">Graphic Design Masterclass</div>
+                        <div class="stars"><i class="fa fa-star"></i> 4.7 (320)</div>
+                        <span class="price">$39</span>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <img src="images/course-business.jpg.avif" alt="Business Analytics" class="course-img">
+                    <div class="course-content">
+                        <div class="course-title">Business Analytics Fundamentals</div>
+                        <div class="stars"><i class="fa fa-star"></i> 4.9 (1k+)</div>
+                        <span class="price">Free</span>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <img src="images/course-spanish.jpg.avif" alt="Spanish" class="course-img">
+                    <div class="course-content">
+                        <div class="course-title">Spanish for Beginners</div>
+                        <div class="stars"><i class="fa fa-star"></i> 4.5 (200)</div>
+                        <span class="price">$29</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="instructors">
+        <div class="container">
+            <h2 class="section-title">Meet Our Instructors</h2>
+            <div class="instructor-grid">
+                <div class="instructor-card">
+                    <img src="images/inst-john.jpg.avif" class="inst-img" alt="John">
+                    <h3>John Carter</h3>
+                    <p class="inst-role">Web Developer</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px;">Ex-tech lead, teaching millions of students.</p>
+                </div>
+                <div class="instructor-card">
+                    <img src="images/inst-lisa.jpg.avif" class="inst-img" alt="Lisa">
+                    <h3>Lisa Wang</h3>
+                    <p class="inst-role">Graphic Designer</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px;">Award winning designer with 10 years exp.</p>
+                </div>
+                <div class="instructor-card">
+                    <img src="images/inst-ahmed.jpg.avif" class="inst-img" alt="Ahmed">
+                    <h3>Ahmed El-Sayed</h3>
+                    <p class="inst-role">Business Analyst</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px;">Expert in data driven business strategies.</p>
+                </div>
+                <div class="instructor-card">
+                    <img src="images/inst-maria.jpg.webp" class="inst-img" alt="Maria">
+                    <h3>Maria Garcia</h3>
+                    <p class="inst-role">Language Coach</p>
+                    <p style="font-size: 0.8rem; margin-top: 10px;">Spanish translator and language enthusiast.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Students Say</h2>
+            <div class="test-grid">
+                <div class="test-card">
+                    <img src="images/student-sarah.jpg.avif" class="test-img" alt="Sarah">
+                    <div>
+                        <h4>Sarah Smith</h4>
+                        <p style="font-size: 0.9rem; font-style: italic;">"This course was well structured and easy to follow. Helped me find my first job!"</p>
+                    </div>
+                </div>
+                <div class="test-card">
+                    <img src="images/student-mark.jpg.avif" class="test-img" alt="Mark">
+                    <div>
+                        <h4>Mark Lee</h4>
+                        <p style="font-size: 0.9rem; font-style: italic;">"Great instructors and a huge variety of topics. The platform is intuitive and responsive."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="articles">
+        <div class="container">
+            <h2 class="section-title">Latest Articles</h2>
+            <div class="course-grid">
+                <div class="article-card">
+                    <img src="images/blog-1.jpg.jpg" class="art-img" alt="Blog 1">
+                    <div class="art-content">
+                        <h4>5 Tips to Boost Your Online Learning</h4>
+                        <p class="art-date">Aug 20, 2024</p>
+                        <p style="font-size: 0.9rem; margin: 10px 0;">Discover actionable strategies to stay committed...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <img src="images/blog-2.jpg.jpg" class="art-img" alt="Blog 2">
+                    <div class="art-content">
+                        <h4>Top 10 In-Demand Skills in 2024</h4>
+                        <p class="art-date">Aug 15, 2024</p>
+                        <p style="font-size: 0.9rem; margin: 10px 0;">Get ahead in your career by mastering these...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <img src="images/blog-3.jpg.jpg" class="art-img" alt="Blog 3">
+                    <div class="art-content">
+                        <h4>How to Choose the Right Course</h4>
+                        <p class="art-date">Aug 10, 2024</p>
+                        <p style="font-size: 0.9rem; margin: 10px 0;">A step-by-step guide to selecting courses...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">How do I enroll in a course? <i class="fa fa-plus"></i></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Are there any free courses? <i class="fa fa-plus"></i></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do I get a certificate after completion? <i class="fa fa-plus"></i></div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Can I access courses on mobile? <i class="fa fa-plus"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <div class="news-box">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p>Get the latest updates, course launches, and exclusive offers straight to your inbox.</p>
+                <div class="news-input">
+                    <input type="email" placeholder="Enter your email">
+                    <button class="btn btn-primary">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">Learnify</div>
+                    <p style="margin-top: 20px; color: #9CA3AF; font-size: 0.9rem;">Empowering learners worldwide with quality online education.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Links</h4>
+                    <ul>
+                        <li>Courses</li>
+                        <li>Instructors</li>
+                        <li>Blog</li>
+                        <li>FAQ</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: adityajha92899@gmail.com</li>
+                        <li>Phone: +91 6201192899</li>
+                        <li>123 Learning St, Edutown</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div style="font-size: 1.2rem;">
+                        <i class="fab fa-facebook" style="margin-right: 10px;"></i>
+                        <i class="fab fa-twitter" style="margin-right: 10px;"></i>
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Learnify. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
